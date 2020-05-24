@@ -1,4 +1,4 @@
 class Character < ApplicationRecord
   belongs_to :movie
-  belongs_to :person
+  belongs_to :actor
 end
