@@ -51,7 +51,8 @@ Movie
   director:belongs_to
   writer:belongs_to
   release_date:date
-  country:string
+
+
 
 Character
   movie:belongs_to
