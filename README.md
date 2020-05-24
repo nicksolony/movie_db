@@ -37,7 +37,6 @@ Genre
 Review
   user:belongs_to
   movie:belongs_to
-  character:belongs_to
   comment:text
   rating:integer
 
