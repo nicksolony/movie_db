@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :characters
   resources :movies
   resources :people
   resources :reviews

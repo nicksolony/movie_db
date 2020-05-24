@@ -52,8 +52,6 @@ Movie
   writer:belongs_to
   release_date:date
 
-
-
 Character
   movie:belongs_to
   person:belongs_to
