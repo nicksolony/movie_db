@@ -3,14 +3,6 @@ class UsersController < ApplicationController
 
   end
 
-  def new
-
-  end
-
-  def create
-
-  end
-
   def show
     @user=current_user
   end

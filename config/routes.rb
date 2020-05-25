@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'signup' => 'devise/registrations#new'
     get '/login' => 'devise/sessions#new'
-    delete '/logout' => 'devise/sessions#destroy'  
+    delete '/logout' => 'devise/sessions#destroy'
   end
 
   resources :characters
@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   resources :people
   resources :reviews
   resources :genres
-  resources :users
+  resources :users,  only: [:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
