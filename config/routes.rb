@@ -2,10 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :users
   root 'static#home'
-  get 'signup' => 'static#signup'
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  post '/logout' => 'sessions#destroy'
+  devise_scope :user do
+    get 'signup' => 'devise/registrations#new'
+    get '/login' => 'devise/sessions#new'
+    delete '/logout' => 'devise/sessions#destroy'  
+  end
 
   resources :characters
   resources :movies
