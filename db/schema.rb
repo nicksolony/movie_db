@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_162332) do
+ActiveRecord::Schema.define(version: 2020_05_25_184531) do
 
   create_table "characters", force: :cascade do |t|
     t.integer "movie_id", null: false
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_162332) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.datetime "remember_created_at"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
