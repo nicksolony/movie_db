@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   root 'static#home'
   get 'signup' => 'static#signup'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  post '/logout' => 'sessions#destroy'
 
   resources :characters
   resources :movies
