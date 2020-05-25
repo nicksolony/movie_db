@@ -1,4 +1,6 @@
 class CharactersController < ApplicationController
+  #before_action :authenticate_user!, only: [:new, :edit, :create, :destroy]
+
   def index
 
   end
