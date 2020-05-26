@@ -1,0 +1,28 @@
+<%= form_for movie do |f| %>
+<table>
+  <tr>
+    <td><%= f.label :title%></td>
+    <td><%= f.text_field :title%></td>
+  </tr>
+<tr>
+    <td><%= f.label :genre%></td>
+    <td><%=  f.collection_select :genre_id, Genre.order(:name),:id,:name, include_blank: true %></td>
+</tr>
+<tr>
+  <td><%= f.label :director%></td>
+  <td><%=  f.collection_select :director_id, Person.order(:name),:id,:name, include_blank: true %></td>
+</tr>
+<tr>
+  <td><%= f.label :writer%></td>
+  <td><%= f.collection_select :writer_id, Person.order(:name),:id,:name, include_blank: true %></td>
+</tr>
+<tr>
+  <td><%= f.label :release_date%></td>
+  <td><%= f.number_field :release_date%>
+</td>
+</tr>
+<tr>
+<td><%= f.submit %></td>
+</tr>
+</table>
+<% end %>
