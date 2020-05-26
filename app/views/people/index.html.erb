@@ -1,1 +1,8 @@
-List of all people, maybe we can add sorting and search?
+<h1>List of all people, maybe we can add sorting and search?</h1>
+<%= link_to "Add new person", new_person_path%>
+<h2>all people</h2>
+<ul>
+  <% @people.each do |p|%>
+  <li><%=link_to p.name, person_path(p.slug)%></li>
+  <%end%>
+</ul>
