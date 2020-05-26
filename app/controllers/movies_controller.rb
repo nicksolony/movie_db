@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  #before_action :find_movie, only: [:edit, :show, :destroy]
 
   def index
     @movies=Movie.all
@@ -13,7 +14,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-
+    binding.pry
   end
 
   def edit
@@ -23,5 +24,12 @@ class MoviesController < ApplicationController
   def destroy
 
   end
+
+  private
+
+  #def find_movie(params)
+  #  binding.pry
+  #  @movie=Movie.all
+  #end
 
 end
