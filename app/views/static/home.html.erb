@@ -1,2 +1,24 @@
 <h1>Welcome to Movie Database</h1>
 <p>You can review movies and their ratings here.</p>
+
+
+
+<h2>Recently Added!</h2>
+
+<table>
+  <tr>
+    <th>Movies</th>
+    <th>People</th>
+    <th>Reviews</th>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <% @recently_added_movies.each do |m|%>
+          <li><%=link_to m.title, movie_path(m.title.parameterize)%></li>
+          <%end%>
+      </ul>
+    </td>
+  </tr>
+
+</table>
