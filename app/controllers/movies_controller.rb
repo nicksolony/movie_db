@@ -1,8 +1,7 @@
 class MoviesController < ApplicationController
-  #before_action :find_movie, only: [:edit, :show, :destroy]
 
   def index
-    @movies=Movie.all
+    @movies=Movie.all.sort_by(&:title)
   end
 
   def new
@@ -10,11 +9,15 @@ class MoviesController < ApplicationController
   end
 
   def create
-
+    @movie=Movie.create(movie_params)
+    redirect_to movie_path(@movie.slug)
   end
 
   def show
-    binding.pry
+    @movie=Movie.find_by(:slug=> params[:id])
+    @director=@movie.director
+    @writer=@movie.writer
+    @genre=@movie.genre
   end
 
   def edit
@@ -26,10 +29,8 @@ class MoviesController < ApplicationController
   end
 
   private
-
-  #def find_movie(params)
-  #  binding.pry
-  #  @movie=Movie.all
-  #end
+  def movie_params
+    params.require(:movie).permit(:title,:genre_id,:writer_id,:director_id,:release_date)
+  end
 
 end

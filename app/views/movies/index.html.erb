@@ -1,1 +1,7 @@
-List of all movies, maybe we can add sorting and search?
+<h1>All Movies</h1>
+<%= link_to "Add new movie", new_movie_path%>
+<ul>
+  <% @movies.each do |m|%>
+  <li><%=link_to m.title, movie_path(m.slug)%> - <%=link_to m.genre, genre_path(m.genre.slug)%></li>
+  <%end%>
+</ul>

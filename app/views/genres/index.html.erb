@@ -1,0 +1,7 @@
+<h1>Genres</h1>
+<%= link_to "Add new genre", new_genre_path%>
+<ul>
+  <% @genres.each do |g|%>
+  <li><%=link_to g.name, genre_path(g.slug)%> - <%=g.movies.count%></li>
+  <%end%>
+</ul>
