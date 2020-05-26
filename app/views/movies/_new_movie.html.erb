@@ -7,6 +7,14 @@
 <tr>
     <td><%= f.label :genre%></td>
     <td><%=  f.collection_select :genre_id, Genre.order(:name),:id,:name, include_blank: true %></td>
+<td>Or create a new genre:</td>
+
+    <td>
+
+  <%= f.fields_for :genre, Genre.new do |genre_attributes|%>
+      <%= genre_attributes.label :name, "Genre Name:" %></td><td>
+      <%= genre_attributes.text_field :name %>
+  <% end %></td>
 </tr>
 <tr>
   <td><%= f.label :director%></td>
@@ -15,6 +23,17 @@
 <tr>
   <td><%= f.label :writer%></td>
   <td><%= f.collection_select :writer_id, Person.order(:name),:id,:name, include_blank: true %></td>
+  <td>Or create a new writer:</td>
+
+
+
+    <%= f.fields_for :writer, Person.new do |writer_attributes|%>
+        <td><%= writer_attributes.label :name, "Name:" %></td><td>
+        <%= writer_attributes.text_field :name %>
+    </td><td><%= writer_attributes.label :dob, "DOB:" %></td><td>
+    <%= writer_attributes.date_field :dob %>
+</td>
+    <% end %>
 </tr>
 <tr>
   <td><%= f.label :release_date%></td>

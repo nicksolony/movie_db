@@ -2,6 +2,6 @@
 <h2>Movies</h2>
 <ul>
   <% @genre_movies.each do |m|%>
-  <li><%= link_to m.name, movie_path(m.slug)%></li>
+  <li><%= link_to m.title, movie_path(m.slug)%></li>
   <%end%>
 </ul>

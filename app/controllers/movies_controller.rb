@@ -6,9 +6,13 @@ class MoviesController < ApplicationController
 
   def new
     @movie=Movie.new
+    @movie.build_genre
+    @movie.build_writer
+    @movie.build_director
   end
 
   def create
+    binding.pry
     @movie=Movie.create(movie_params)
     redirect_to movie_path(@movie.slug)
   end
@@ -18,6 +22,7 @@ class MoviesController < ApplicationController
     @director=@movie.director
     @writer=@movie.writer
     @genre=@movie.genre
+    @characters=@movie.characters
   end
 
   def edit
@@ -30,7 +35,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title,:genre_id,:writer_id,:director_id,:release_date)
+    params.require(:movie).permit(:title,:genre_id,:writer_id,:director_id,:release_date, genre_attributes:[:name],writer_attributes:[:name,:dob])
   end
 
 end

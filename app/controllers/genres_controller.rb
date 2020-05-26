@@ -14,7 +14,7 @@ class GenresController < ApplicationController
 
   def show
     @genre=Genre.find_by(:slug=> params[:id])
-    @genre_movies = @genre.movies.all.sort_by(&:name)
+    @genre_movies = @genre.movies.all.sort_by(&:title)
   end
 
   def edit
