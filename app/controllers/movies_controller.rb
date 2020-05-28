@@ -6,15 +6,17 @@ class MoviesController < ApplicationController
 
   def new
     @movie=Movie.new
-    @movie.build_genre
-    @movie.build_writer
-    @movie.build_director
+    @genres=Genre.order(:name)
   end
 
   def create
+    @movie=Movie.new(movie_params)
     binding.pry
-    @movie=Movie.create(movie_params)
-    redirect_to movie_path(@movie.slug)
+    if @movie.save
+      redirect_to movie_path(@movie.slug)
+    else
+      redirect_to new_movie_path, alert: "Title can't be blank"
+    end
   end
 
   def show
@@ -35,7 +37,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title,:genre_id,:writer_id,:director_id,:release_date, genre_attributes:[:name],writer_attributes:[:name,:dob])
+    params.require(:movie).permit(:title,:genre_id,:writer_id,:director_id,:release_date, genre_attributes:[:id,:name],writer_attributes:[:name,:dob],director_attributes:[:name,:dob])
   end
 
 end

@@ -8,8 +8,15 @@ class GenresController < ApplicationController
   end
 
   def create
-    @genre=Genre.create(genre_params)
-    redirect_to genre_path(@genre.slug)
+
+      @genre=Genre.new(genre_params)
+    if @genre.save
+
+      redirect_to genre_path(@genre.slug)
+    else
+      #binding.pry
+      redirect_to new_genre_path, alert: "Name can't be blank"
+    end
   end
 
   def show

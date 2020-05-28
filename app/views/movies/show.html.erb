@@ -1,5 +1,7 @@
 <h1><%=@movie.title%></h1>
-<h2><%=link_to @genre.name, genre_path(@genre.slug)%></h2>
+<% if !@genre.nil?%>
+<h2><%=link_to @genre.name, genre_path(@genre.slug) %></h2>
+<% end%>
 <h2><%=@movie.release_date%></h2>
-<h3>Director: <%=link_to @director.name, person_path(@director.slug)%></h3>
-<h3>Writer: <%=link_to @writer.name, person_path(@writer.slug)%></h3>
+<h3>Director: <%=link_to @director.name, person_path(@director.slug) if !@director.nil?%></h3>
+<h3>Writer: <%=link_to @writer.name, person_path(@writer.slug) if !@writer.nil?%></h3>

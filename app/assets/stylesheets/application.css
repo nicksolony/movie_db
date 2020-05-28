@@ -37,3 +37,8 @@
 .nav li a:hover {
    background-color: #111;
  }
+
+.alert {
+  font-size: 24px;
+  color: red;
+}

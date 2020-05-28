@@ -5,29 +5,34 @@
     <td><%= f.text_field :title%></td>
   </tr>
 <tr>
-    <td><%= f.label :genre%></td>
-    <td><%=  f.collection_select :genre_id, Genre.order(:name),:id,:name, include_blank: true %></td>
+
+
+  <%= f.fields_for :genre do |genre_attributes|%>
+  <td><%= genre_attributes.label :id, "Genre"%></td>
+  <td><%=  genre_attributes.collection_select :id, @genres,:id,:name, include_blank: true %></td>
 <td>Or create a new genre:</td>
 
-    <td>
-
-  <%= f.fields_for :genre, Genre.new do |genre_attributes|%>
-      <%= genre_attributes.label :name, "Genre Name:" %></td><td>
+      <%= genre_attributes.label :name, "Genre Name:" %><td>
       <%= genre_attributes.text_field :name %>
   <% end %></td>
 </tr>
 <tr>
   <td><%= f.label :director%></td>
   <td><%=  f.collection_select :director_id, Person.order(:name),:id,:name, include_blank: true %></td>
+  <td>Or create a new director:</td>
+    <%= f.fields_for :director, movie.build_director do |director_attributes|%>
+        <td><%= director_attributes.label :name, "Name:" %></td><td>
+        <%= director_attributes.text_field :name %>
+    </td><td><%= director_attributes.label :dob, "DOB:" %></td><td>
+    <%= director_attributes.date_field :dob %>
+</td>
+  <% end %>
 </tr>
 <tr>
   <td><%= f.label :writer%></td>
   <td><%= f.collection_select :writer_id, Person.order(:name),:id,:name, include_blank: true %></td>
   <td>Or create a new writer:</td>
-
-
-
-    <%= f.fields_for :writer, Person.new do |writer_attributes|%>
+    <%= f.fields_for :writer, movie.build_writer do |writer_attributes|%>
         <td><%= writer_attributes.label :name, "Name:" %></td><td>
         <%= writer_attributes.text_field :name %>
     </td><td><%= writer_attributes.label :dob, "DOB:" %></td><td>
