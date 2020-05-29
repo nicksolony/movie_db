@@ -2,6 +2,9 @@
 <%= link_to "Add new movie", new_movie_path if user_signed_in?%>
 <ul>
   <% @movies.each do |m|%>
-  <li><%=link_to m.title, movie_path(m.slug)%> - <%=link_to m.genre.name, genre_path(m.genre.slug)%></li>
+  <li><%=link_to m.title, movie_path(m.slug)%> -
+     <%m.genres.each do |genre|%>
+    <%=link_to genre.name, genre_path(genre.slug)%>/
+  <%end%></li>
   <%end%>
 </ul>

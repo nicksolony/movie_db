@@ -5,18 +5,15 @@
     <td><%= f.text_field :title%></td>
   </tr>
 <tr>
+  <td>Genres:</td>
+    <td><%= f.collection_check_boxes :genre_ids, @genres, :id, :name %></td>
+  <td>Or create a new genre:</td>
 
-
-  <%= f.fields_for :genre do |genre_attributes|%>
-  <td><%= genre_attributes.label :id, "Genre"%></td>
-  <td><%=  genre_attributes.collection_select :id, @genres,:id,:name, include_blank: true %></td>
-<td>Or create a new genre:</td>
-
-      <%= genre_attributes.label :name, "Genre Name:" %><td>
-      <%= genre_attributes.text_field :name %>
-  <% end %></td>
+  <td><%= f.fields_for :genres, movie.genres.build do |genres_fields| %>
+  <%= genres_fields.text_field :name %></td>
+<% end %>
 </tr>
-<tr>
+<!-- <tr>
   <td><%= f.label :director%></td>
   <td><%=  f.collection_select :director_id, Person.order(:name),:id,:name, include_blank: true %></td>
   <td>Or create a new director:</td>
@@ -39,7 +36,7 @@
     <%= writer_attributes.date_field :dob %>
 </td>
     <% end %>
-</tr>
+</tr> -->
 <tr>
   <td><%= f.label :release_date%></td>
   <td><%= f.number_field :release_date%>

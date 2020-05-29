@@ -1,6 +1,7 @@
 <h1><%=@movie.title%></h1>
-<% if !@genre.nil?%>
-<h2><%=link_to @genre.name, genre_path(@genre.slug) %></h2>
+
+<% @genres.each do |genre|%>
+<h2><%=link_to genre.name, genre_path(genre.slug) %></h2>
 <% end%>
 <h2><%=@movie.release_date%></h2>
 <h3>Director: <%=link_to @director.name, person_path(@director.slug) if !@director.nil?%></h3>

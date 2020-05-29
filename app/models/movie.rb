@@ -8,6 +8,7 @@ class Movie < ApplicationRecord
   has_many :actors, :through => :characters, :source => :actor
   has_many :reviews
   has_many :users, through: :reviews
+  validates :title, presence: true
   after_validation :set_slug, only: [:create, :update]
   #accepts_nested_attributes_for :genre,:director,:writer, :characters
 
@@ -17,12 +18,23 @@ class Movie < ApplicationRecord
   #  self.genre = Genre.find_by(id: id)
   #end
 
-  def genres_attributes=(genre_attributes)
-    if genre_attribute["name"].present?
-      genre=Genre.find_or_create_by(genre_attributes)
-      self.genre=genre
+  def genres_attributes=(genres_attributes)
+    if genres_attribute["name"].present?
+      genre=Genre.find_or_create_by(genres_attributes)
+      self.genres<genre
     end
   end
+
+
+  def genres_attributes=(genre_attributes)
+   genre_attributes.values.each do |genre_attribute|
+     if genre_attribute["name"].present?
+       genre = Genre.find_or_create_by(genre_attribute)
+       self.genres << genre
+       self.post_genres.build(genre: genre)
+     end
+   end
+ end
 
 
   #def directors_attributes=(director_attributes)

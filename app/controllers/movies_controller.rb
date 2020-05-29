@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
     if @movie.save
       redirect_to movie_path(@movie.slug)
     else
-      redirect_to new_movie_path, alert: "Title can't be blank"
+      redirect_to new_movie_path, alert: @movie.errors.full_messages
     end
   end
 
@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
     @movie=Movie.find_by(:slug=> params[:id])
     @director=@movie.director
     @writer=@movie.writer
-    @genre=@movie.genre
+    @genres=@movie.genres
     @characters=@movie.characters
   end
 
@@ -37,7 +37,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title,:genre_id,:writer_id,:director_id,:release_date, genre_attributes:[:id,:name],writer_attributes:[:name,:dob],director_attributes:[:name,:dob])
+    params.require(:movie).permit(:title, :release_date, genre_ids:[], genres_attributes: [:name])
   end
 
 end
