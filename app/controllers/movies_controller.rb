@@ -22,11 +22,14 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie=Movie.find_by(:slug=> params[:id])
-    @director=@movie.director
-    @writer=@movie.writer
-    @genres=@movie.genres
-    @characters=@movie.characters
+    if @movie=Movie.find_by(:slug=> params[:id])
+      @director=@movie.director
+      @writer=@movie.writer
+      @genres=@movie.genres
+      @characters=@movie.characters
+    else
+      redirect_to movies_path
+    end
   end
 
   def edit

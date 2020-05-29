@@ -13,7 +13,10 @@ class PeopleController < ApplicationController
   end
 
   def show
-    @person=Person.find_by(:slug=> params[:id])
+    if @person=Person.find_by(:slug=> params[:id])
+    else
+      redirect_to people_path
+    end
   end
 
   def edit

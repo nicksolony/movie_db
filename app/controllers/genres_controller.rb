@@ -20,8 +20,11 @@ class GenresController < ApplicationController
   end
 
   def show
-    @genre=Genre.find_by(:slug=> params[:id])
-    @genre_movies = @genre.movies.all.sort_by(&:title)
+    if @genre=Genre.find_by(:slug=> params[:id])
+      @genre_movies = @genre.movies.all.sort_by(&:title)
+    else
+      redirect_to genres_path
+    end
   end
 
   def edit
