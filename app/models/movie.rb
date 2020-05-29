@@ -30,8 +30,8 @@ class Movie < ApplicationRecord
    genre_attributes.values.each do |genre_attribute|
      if genre_attribute["name"].present?
        genre = Genre.find_or_create_by(genre_attribute)
-       self.genres << genre
-       self.post_genres.build(genre: genre)
+      # self.genres << genre
+       self.movie_genres.build(genre: genre)
      end
    end
  end

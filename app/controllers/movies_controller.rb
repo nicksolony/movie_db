@@ -1,7 +1,9 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies=Movie.all.sort_by(&:title)
+    @movies=Movie.order(:title)
+    @genres=Genre.order(:name)
+
   end
 
   def new
@@ -11,7 +13,7 @@ class MoviesController < ApplicationController
 
   def create
     @movie=Movie.new(movie_params)
-    binding.pry
+  #  binding.pry
     if @movie.save
       redirect_to movie_path(@movie.slug)
     else

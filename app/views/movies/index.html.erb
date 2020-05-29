@@ -1,10 +1,15 @@
-<h1>All Movies</h1>
 <%= link_to "Add new movie", new_movie_path if user_signed_in?%>
+<h1>All Movies</h1>
+<h3>See movies by Genre</h3>
+<h4><% @genres.each do |genre|%>
+<%= link_to genre.name, genre_path(genre.slug)%>(<%=genre.movies.size%>)
+<%end%></h4>
 <ul>
   <% @movies.each do |m|%>
-  <li><%=link_to m.title, movie_path(m.slug)%> -
+  <li><%=link_to m.title, movie_path(m.slug)%>
+    <%= "-" if !m.genres.empty? %>
      <%m.genres.each do |genre|%>
-    <%=link_to genre.name, genre_path(genre.slug)%>/
+    <%=link_to genre.name, genre_path(genre.slug)%>
   <%end%></li>
   <%end%>
 </ul>
