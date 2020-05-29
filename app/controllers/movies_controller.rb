@@ -1,22 +1,28 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies=Movie.order(:title)
-    @genres=Genre.order(:name)
+    @movies||= Movie.order(:title)
+    @genres||= Genre.order(:name)
 
   end
 
   def new
     @movie=Movie.new
     @genres=Genre.order(:name)
+    @movie.build_director
   end
 
   def create
     @movie=Movie.new(movie_params)
-  #  binding.pry
     if @movie.save
       redirect_to movie_path(@movie.slug)
-    else
+    # elsif @movie.director.name.empty?
+    #     binding.pry
+    #     @movie.director=Person.find(movie_params[:director_id].to_i)
+    #     binding.pry
+    #     @movie.save
+    #     redirect_to movie_path(@movie.slug)
+      else
       redirect_to new_movie_path, alert: @movie.errors.full_messages
     end
   end
@@ -42,7 +48,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :release_date, genre_ids:[], genres_attributes: [:name])
+    params.require(:movie).permit(:title, :director_id,:release_date, genre_ids:[], genres_attributes: [:name], director_attributes: [:name, :dob])
   end
 
 end

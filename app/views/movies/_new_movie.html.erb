@@ -13,19 +13,19 @@
   <%= genres_fields.text_field :name %></td>
 <% end %>
 </tr>
-<!-- <tr>
+<tr>
   <td><%= f.label :director%></td>
   <td><%=  f.collection_select :director_id, Person.order(:name),:id,:name, include_blank: true %></td>
   <td>Or create a new director:</td>
-    <%= f.fields_for :director, movie.build_director do |director_attributes|%>
-        <td><%= director_attributes.label :name, "Name:" %></td><td>
-        <%= director_attributes.text_field :name %>
-    </td><td><%= director_attributes.label :dob, "DOB:" %></td><td>
-    <%= director_attributes.date_field :dob %>
+    <%= f.fields_for :director, movie.build_director do |director_attribute|%>
+        <td>
+        <%= director_attribute.text_field :name %>
+    </td><td><%= director_attribute.label :dob, "DOB:" %></td><td>
+    <%= director_attribute.date_field :dob %>
 </td>
   <% end %>
 </tr>
-<tr>
+<!-- <tr>
   <td><%= f.label :writer%></td>
   <td><%= f.collection_select :writer_id, Person.order(:name),:id,:name, include_blank: true %></td>
   <td>Or create a new writer:</td>
