@@ -31,50 +31,20 @@ class Movie < ApplicationRecord
  end
 
  def director_attributes=(director_attribute)
+   binding.pry
       if director_attribute[:name].present?
-        #director = Person.find_or_create_by(name: director_attribute[:name], dob:director_attribute[:dob])
-        if director = Person.find_by(name: director_attribute[:name])
+        if director_attribute[:dob].present?
+          slug = "#{director_attribute[:name].to_s.parameterize}-#{director_attribute[:dob].to_s.parameterize}"
+        else
+          slug = director_attribute[:name].to_s.parameterize
+        end
+        if director = Person.find_by(slug: slug)
           self.director=director
         else
           self.build_director(director_attribute)
         end
-        # if director_attribute[:dob].blank?
-        #   director_attribute[:slug] = director_attribute[:name].to_s.parameterize
-        # else
-        #   director_attribute[:slug] = "#{director_attribute[:name].to_s.parameterize}-##{director_attribute[:dob].to_s.parameterize}"
-        # end
-        #if @movie.director = Person.find_by(slug: #director_attribute[:slug])
-        #  else
-        #  @movie.director=Person.create(director_attribute)
-        #end
-        # if director = Person.find_by(slug: director_attribute[:slug])
-        #   self.director=director
-        # else
-        #    director = Person.create(director_attribute)
-        #  end
       end
   end
-
-
-
-  # def director_id=(director_id)
-  #  self.director = Person.find_by(id: id)
-  # end
-
-  #def director_attributes=(director_attributes)
-  #  self.build_director(director_attributes)
-  #end
-
-
-  #def directors_attributes=(director_attributes)
-  #  director=Person.find_or_create_by(director_attributes)
-  #  self.director=director
-  #end
-
-  #def writers_attributes=(writer_attributes)
-  #  writer=Person.find_or_create_by(writer_attributes)
-  #  self.writer=writer
-  #end
 
   private
     def set_slug
