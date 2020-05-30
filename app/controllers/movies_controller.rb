@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
   def new
     @movie=Movie.new
     @genres=Genre.order(:name)
-    @movie.build_director
+    #@movie.build_director
   end
 
   def create

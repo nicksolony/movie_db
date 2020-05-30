@@ -5,7 +5,7 @@ class Person < ApplicationRecord
   has_many :written_movies, :foreign_key => 'writer_id', :class_name=>'Movie'
   validates :name, presence: true
   validates :slug, uniqueness: true
-  before_validation :set_slug, only: [:create, :update]
+  after_validation :set_slug, only: [:create, :update]
 
   private
     def set_slug

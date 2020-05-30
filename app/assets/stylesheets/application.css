@@ -42,3 +42,11 @@
   font-size: 24px;
   color: red;
 }
+
+.field_with_errors {
+  padding: 2px;
+  border: 3px;
+  border-color: red;
+  background-color: red;
+  display: table;
+}

@@ -9,7 +9,8 @@ class Movie < ApplicationRecord
   has_many :reviews
   has_many :users, through: :reviews
   validates :title, presence: true
-  after_validation :set_slug, only: [:create, :update]
+  validates :title, uniqueness: { scope: :slug}
+  before_validation :set_slug, only: [:create, :update]
   accepts_nested_attributes_for :movie_genres,:director,:writer, :characters
 
 
@@ -46,8 +47,15 @@ class Movie < ApplicationRecord
   end
 
   private
+    #def set_slug
+    #  self.slug = title.to_s.parameterize
+    #end
     def set_slug
-      self.slug = title.to_s.parameterize
+      if self.release_date.present?
+        self.slug = "#{title.to_s.parameterize}-#{release_date.to_s.parameterize}"
+      else
+        self.slug = title.to_s.parameterize
+      end
     end
 
 end
