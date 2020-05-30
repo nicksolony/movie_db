@@ -8,11 +8,13 @@ class MoviesController < ApplicationController
 
   def new
     @movie=Movie.new
-    @genres=Genre.order(:name)
+    @genres||=Genre.order(:name)
+    @people||=Person.order(:name)
     #@movie.build_director
   end
 
   def create
+    binding.pry
     @movie=Movie.new(movie_params)
     if @movie.save
       redirect_to movie_path(@movie.slug)

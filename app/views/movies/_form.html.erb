@@ -2,50 +2,57 @@
 
 <table>
   <tr>
-    <td><%= f.label :title%></td>
+    <td><h3><%= f.label :title%></h3></td>
     <td><%= f.text_field :title%></td>
-    <td><%= f.label :release_date%></td>
+    <td><h3><%= f.label :release_date%></h3></td>
     <td><%= f.number_field :release_date%></td>
   </tr>
 <tr>
-  <td>Genres:</td>
-    <td><%= f.select :genre_ids, options_from_collection_for_select(@genres, :id, :name), {}, {:multiple => true} %></td>
-
-
+  <td><h3>Genres:</h3></td>
+  <td><%= f.select :genre_ids, options_from_collection_for_select(@genres, :id, :name), {}, {:multiple => true} %></td>
   <td>Or create a new genre:</td>
-
-  <td><%= f.fields_for :genres, movie.genres.build do |genres_fields| %>
-  <%= genres_fields.text_field :name %></td>
-<% end %>
+  <%= f.fields_for :genres, movie.genres.build do |genres_fields| %>
+    <td><%= genres_fields.text_field :name %></td>
+  <% end %>
 </tr>
 <tr>
-  <td><%= f.label :director%></td>
-  <td><%=  f.collection_select :director_id, Person.order(:name),:id,:name, include_blank: true %></td>
-
+  <td><h3><%= f.label :director%></h3></td>
+  <td><%=  f.collection_select :director_id, @people,:id,:name, include_blank: true %></td>
   <td>Or create a new director:</td>
-    <%= f.fields_for :director, movie.build_director do |director_attribute|%>
-        <td>
-        <%= director_attribute.text_field :name %>
-    </td><td><%= director_attribute.label :dob, "DOB:" %></td><td>
-    <%= director_attribute.date_field :dob %>
-</td>
+  <%= f.fields_for :director, movie.build_director do |director_attribute|%>
+    <td><%= director_attribute.text_field :name %></td>
+    <td><%= director_attribute.label :dob, "DOB:" %></td>
+    <td><%= director_attribute.date_field :dob %></td>
   <% end %>
 </tr>
 <tr>
-  <td><%= f.label :writer%></td>
-  <td><%=  f.collection_select :writer_id, Person.order(:name),:id,:name, include_blank: true %></td>
-
+  <td><h3><%= f.label :writer%></h3></td>
+  <td><%=  f.collection_select :writer_id, @people,:id,:name, include_blank: true %></td>
   <td>Or create a new writer:</td>
-    <%= f.fields_for :writer, movie.build_writer do |writer_attribute|%>
-        <td>
-        <%= writer_attribute.text_field :name %>
-    </td><td><%= writer_attribute.label :dob, "DOB:" %></td><td>
-    <%= writer_attribute.date_field :dob %>
-</td>
+  <%= f.fields_for :writer, movie.build_writer do |writer_attribute|%>
+    <td><%= writer_attribute.text_field :name %></td>
+    <td><%= writer_attribute.label :dob, "DOB:" %></td>
+    <td><%= writer_attribute.date_field :dob %></td>
   <% end %>
 </tr>
 <tr>
-<td><%= f.submit %></td>
+  <td><h3>Cast</h3></td>
+</tr>
+<tr>
+  <td><h4>Actor:</h4></td>
+  <td><%=  f.collection_select :actor_ids, @people,:id,:name, include_blank: true %></td>
+  <td>Or create a new actor:</td>
+  <%= f.fields_for :actors, movie.actors.build do |actors_fields| %>
+    <td><%= actors_fields.text_field :name %></td>
+    <td><%= actors_fields.label :dob, "DOB:" %></td>
+    <td><%= actors_fields.date_field :dob %></td>
+  <% end %>
+</tr>
+<tr>
+
+</tr>
+<tr>
+  <td><%= f.submit %></td>
 </tr>
 </table>
 <% end %>

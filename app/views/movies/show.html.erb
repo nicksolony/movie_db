@@ -6,3 +6,16 @@
 <h2>Release Date: <%=@movie.release_date%></h2>
 <h3>Director: <%=link_to @director.name, person_path(@director.slug) if !@director.nil?%></h3>
 <h3>Writer: <%=link_to @writer.name, person_path(@writer.slug) if !@writer.nil?%></h3>
+<% @characters.each do |character| %>
+<h3>Cast:</h3>
+<table>
+  <thead>
+    <td>Actor</td>
+    <td>Character</td>
+  </thead>
+  <tr>
+    <td><%=link_to character.actor.name, person_path(character.actor.slug)%></td>
+    <td><%=character.name%></td>
+  </tr>
+  <%end%>
+</table>
