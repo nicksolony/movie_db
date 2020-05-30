@@ -4,6 +4,8 @@
   <tr>
     <td><%= f.label :title%></td>
     <td><%= f.text_field :title%></td>
+    <td><%= f.label :release_date%></td>
+    <td><%= f.number_field :release_date%></td>
   </tr>
 <tr>
   <td>Genres:</td>
@@ -41,12 +43,6 @@
     <%= writer_attribute.date_field :dob %>
 </td>
   <% end %>
-</tr>
-
-<tr>
-  <td><%= f.label :release_date%></td>
-  <td><%= f.number_field :release_date%>
-</td>
 </tr>
 <tr>
 <td><%= f.submit %></td>

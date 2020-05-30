@@ -13,14 +13,6 @@ class Movie < ApplicationRecord
   after_validation :set_slug, only: [:create, :update]
   accepts_nested_attributes_for :movie_genres,:director,:writer, :characters
 
-
-  # def genres_attributes=(genres_attributes)
-  #   if genres_attribute["name"].present?
-  #     genre=Genre.find_or_create_by(genres_attributes)
-  #     self.genres<genre
-  #   end
-  # end
-
   def genres_attributes=(genre_attributes)
    genre_attributes.values.each do |genre_attribute|
      if genre_attribute["name"].present?
@@ -32,35 +24,23 @@ class Movie < ApplicationRecord
  end
 
  def director_attributes=(director_attribute)
-      if director_attribute[:name].present?
-        if director_attribute[:dob].present?
-          slug = "#{director_attribute[:name].to_s.parameterize}-#{director_attribute[:dob].to_s.parameterize}"
-        else
-          slug = director_attribute[:name].to_s.parameterize
-        end
-        if director = Person.find_by(slug: slug)
-          self.director=director
-        else
-          self.build_director(director_attribute)
-        end
-      end
-  end
+   if director_attribute[:name].present?
+     if person_find_or_create_by(director_attribute)
+       self.director=person
+     else
+      self.build_director(director_attribute)
+     end
+   end
+ end
 
   def writer_attributes=(writer_attribute)
-    binding.pry
-       if writer_attribute[:name].present?
-         if writer_attribute[:dob].present?
-           slug = "#{writer_attribute[:name].to_s.parameterize}-#{writer_attribute[:dob].to_s.parameterize}"
-         else
-           slug = writer_attribute[:name].to_s.parameterize
-         end
-         #if writer = Person.find_by(slug: slug)
-         if writer = Person.find_by(writer_attribute)
-           self.writer=writer
-         else
-           self.build_writer(writer_attribute)
-         end
-       end
+      if writer_attribute[:name].present?
+        if person_find_or_create_by(writer_attribute)
+          self.writer=person
+        else
+         self.build_writer(writer_attribute)
+        end
+      end
    end
 
 
@@ -73,5 +53,24 @@ class Movie < ApplicationRecord
         self.slug = title.to_s.parameterize
       end
     end
+
+    def person_find_or_create_by(attributes)
+        if person = Person.find_by(attributes)
+          else person = Person.where(dob: nil).find_by(name: attributes[:name])
+        end
+    end
+
+  #  def director_attributes=(director_attribute)  ### - OLD CODE GOOD FOR DIRECTOR AND WRITER
+  #    if director_attribute[:name].present?
+  #      if director = Person.find_by(director_attribute)
+  #        self.director=director
+  #      elsif director = Person.where(dob: nil).find_by(name: #director_attribute[:name])
+  #        self.director=director
+  #      else
+  #       self.build_director(director_attribute)
+  #      end
+  #    end
+  #  end
+
 
 end
