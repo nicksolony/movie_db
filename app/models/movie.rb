@@ -31,7 +31,6 @@ class Movie < ApplicationRecord
  end
 
  def director_attributes=(director_attribute)
-   binding.pry
       if director_attribute[:name].present?
         if director_attribute[:dob].present?
           slug = "#{director_attribute[:name].to_s.parameterize}-#{director_attribute[:dob].to_s.parameterize}"

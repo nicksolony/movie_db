@@ -6,7 +6,9 @@
   </tr>
 <tr>
   <td>Genres:</td>
-    <td><%= f.collection_check_boxes :genre_ids, @genres, :id, :name %></td>
+    <td><%= f.select :genre_ids, options_from_collection_for_select(@genres, :id, :name), {}, {:multiple => true} %></td>
+
+
   <td>Or create a new genre:</td>
 
   <td><%= f.fields_for :genres, movie.genres.build do |genres_fields| %>
@@ -16,6 +18,7 @@
 <tr>
   <td><%= f.label :director%></td>
   <td><%=  f.collection_select :director_id, Person.order(:name),:id,:name, include_blank: true %></td>
+
   <td>Or create a new director:</td>
     <%= f.fields_for :director, movie.build_director do |director_attribute|%>
         <td>
