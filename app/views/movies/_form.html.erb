@@ -29,18 +29,20 @@
 </td>
   <% end %>
 </tr>
-<!-- <tr>
+<tr>
   <td><%= f.label :writer%></td>
-  <td><%= f.collection_select :writer_id, Person.order(:name),:id,:name, include_blank: true %></td>
+  <td><%=  f.collection_select :writer_id, Person.order(:name),:id,:name, include_blank: true %></td>
+
   <td>Or create a new writer:</td>
-    <%= f.fields_for :writer, movie.build_writer do |writer_attributes|%>
-        <td><%= writer_attributes.label :name, "Name:" %></td><td>
-        <%= writer_attributes.text_field :name %>
-    </td><td><%= writer_attributes.label :dob, "DOB:" %></td><td>
-    <%= writer_attributes.date_field :dob %>
+    <%= f.fields_for :writer, movie.build_writer do |writer_attribute|%>
+        <td>
+        <%= writer_attribute.text_field :name %>
+    </td><td><%= writer_attribute.label :dob, "DOB:" %></td><td>
+    <%= writer_attribute.date_field :dob %>
 </td>
-    <% end %>
-</tr> -->
+  <% end %>
+</tr>
+
 <tr>
   <td><%= f.label :release_date%></td>
   <td><%= f.number_field :release_date%>
