@@ -28,7 +28,8 @@ class MoviesController < ApplicationController
       @director=@movie.director
       @writer=@movie.writer
       @genres=@movie.genres.uniq
-      @characters=@movie.characters
+      @characters=@movie.characters.order(:name)
+
     else
       redirect_to movies_path
     end
