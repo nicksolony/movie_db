@@ -21,5 +21,5 @@
   <%end%>
 </table>
 
-<p><%=link_to "Edit", edit_movie_path(@movie.slug)%> <%=link_to 'Delete', movie_path(@movie.slug),
+<p><%=link_to "Edit", edit_movie_path(@movie.slug)%> | <%=link_to 'Delete', movie_path(@movie.slug),
             data: {:confirm => 'Are you sure?'}, :method => :delete %></p>

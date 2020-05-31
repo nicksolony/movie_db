@@ -35,7 +35,18 @@ class MoviesController < ApplicationController
   end
 
   def edit
+    if @movie=Movie.find_by(:slug=> params[:id])
+      @genres||=Genre.order(:name)
+      @people||=Person.order(:name)
+    else
+      redirect_to movies_path
+    end
+  end
 
+  def update
+    @movie=Movie.find(params[:id])
+    @movie.update(movie_params)
+    redirect_to movie_path(@movie.slug)
   end
 
   def destroy
