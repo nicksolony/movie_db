@@ -1,0 +1,5 @@
+<h1><%=@person.name%> Filmography</h1>
+<%= render partial:'filmography', locals: {characters: @characters} %>
+
+
+<h3><%=link_to "Back to #{@person.name} page", person_path(@person.slug)%></h3>
