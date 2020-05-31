@@ -1,8 +1,17 @@
-<h1>List of all people, maybe we can add sorting and search?</h1>
-<%= link_to "Add new person", new_person_path  if user_signed_in?%>
-<h2>all people</h2>
-<ul>
-  <% @people.each do |p|%>
-  <li><%=link_to p.name, person_path(p.slug)%></li>
-  <%end%>
-</ul>
+<h1>All people in the database are listed below</h1>
+<h3><%= link_to "Add new person", new_person_path  if user_signed_in?%></h3>
+<table>
+  <thead>
+    <th><h3>Actors</h3></th>
+    <th><h3>Directors</h3></th>
+    <th><h3>Writers</h3></th>
+  </thead>
+  <tr valign="top">
+    <td><%= render partial:'people_list', locals: {people: @actors} %>
+    </td>
+    <td><%= render partial:'people_list', locals: {people: @directors} %>
+    </td>
+    <td><%= render partial:'people_list', locals: {people: @writers} %>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,5 @@
+<ul>
+  <% people.each do |p|%>
+  <li><%=link_to p.name, person_path(p.slug)%></li>
+  <%end%>
+</ul>

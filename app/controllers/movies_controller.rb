@@ -29,7 +29,6 @@ class MoviesController < ApplicationController
       @writer=@movie.writer
       @genres=@movie.genres.uniq
       @characters=@movie.characters.order(:name)
-
     else
       redirect_to movies_path
     end
@@ -40,7 +39,16 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-
+    if @movie=Movie.find_by(:slug=> params[:id])
+      @characters=@movie.characters.order(:name)
+      @characters.each do |character|
+        character.destroy
+      end
+      @movie.destroy
+      redirect_to movies_path
+    else
+      redirect_to movies_path
+    end
   end
 
   private

@@ -1,9 +1,9 @@
 class PeopleController < ApplicationController
   def index
-    @people=Person.order(:name)
-    @directors=@people.select{|person| !person.directed_movies.empty?}
-    @writers=@people.select{|person| !person.written_movies.empty?}
-    @actors
+    @people||=Person.order(:name)
+    @directors||=@people.select{|person| !person.directed_movies.empty?}
+    @writers||=@people.select{|person| !person.written_movies.empty?}
+    @actors||=@people.select{|person| !person.characters.empty?}
   end
 
   def new
@@ -30,7 +30,16 @@ class PeopleController < ApplicationController
   end
 
   def destroy
-
+    if person_identify
+      @characters=@person.characters_played
+      @characters.each do |character|
+        character.destroy
+      end
+      @movie.destroy
+      redirect_to movies_path
+    else
+      redirect_to movies_path
+    end
   end
 
   def directed_movies
