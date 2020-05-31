@@ -40,12 +40,14 @@
 </tr>
 <tr>
   <td><h4>Actor:</h4></td>
+  <%= f.fields_for :characters, movie.characters.build do |character_fields| %>
   <td><%=  f.collection_select :actor_ids, @people,:id,:name, include_blank: true %></td>
   <td>Or create a new actor:</td>
-  <%= f.fields_for :actors, movie.actors.build do |actors_fields| %>
-    <td><%= actors_fields.text_field :name %></td>
-    <td><%= actors_fields.label :dob, "DOB:" %></td>
-    <td><%= actors_fields.date_field :dob %></td>
+  <%= f.fields_for :actors, movie.actors.build do |actor_attribute| %>
+    <td><%= actor_attribute.text_field :name %></td>
+    <td><%= actor_attribute.label :dob, "DOB:" %></td>
+    <td><%= actor_attribute.date_field :dob %></td>
+  <% end %>
   <% end %>
 </tr>
 <tr>
