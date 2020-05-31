@@ -4,12 +4,5 @@
 <h4><% @genres.each do |genre|%>
 <%= link_to genre.name, genre_path(genre.slug)%>(<%=genre.movies.size%>)
 <%end%></h4>
-<ul>
-  <% @movies.each do |m|%>
-  <li><%=link_to m.title, movie_path(m.slug)%>
-    <%= "-" if !m.genres.empty? %>
-     <%m.genres.each do |genre|%>
-    <%=link_to genre.name, genre_path(genre.slug)%>
-  <%end%></li>
-  <%end%>
-</ul>
+
+<%= render partial:'movie_list', locals: {movies: @movies} %>

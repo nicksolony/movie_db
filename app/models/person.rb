@@ -7,6 +7,18 @@ class Person < ApplicationRecord
   validates :name, uniqueness: { scope: :dob}
   after_validation :set_slug, only: [:create, :update]
 
+  def directed_movies
+    Movie.where(director: self)
+  end
+
+  def written_movies
+    Movie.where(writer: self)
+  end
+
+  def characters_played
+    Character.where(actor:self)
+  end
+
   private
     def set_slug
       if self.dob.present?

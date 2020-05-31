@@ -1,0 +1,7 @@
+<ul>
+  <% movies.each do |m|%>
+  <li><%=link_to m.title, movie_path(m.slug)%>
+    <%= "-" if !m.release_date.nil? %>
+    <%=m.release_date%>
+  <%end%></li>
+</ul>

@@ -14,6 +14,11 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
   resources :reviews
   resources :genres
   resources :users,  only: [:show]
+   #[:index,:directed_movies,:written_movies,:filmography]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-    get '*path' => 'static#home'
+  get '/people/:id/directed_movies' => 'people#directed_movies', as: 'directed_movies'
+  get '/people/:id/written_movies' => 'people#written_movies', as: 'written_movies'
+  get '/people/:id/filmography' => 'people#filmography', as: 'filmography'
+
+  get '*path' => 'static#home'
 end

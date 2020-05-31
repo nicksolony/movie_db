@@ -1,2 +1,26 @@
 <h1><%=@person.name%></h1>
+<h2><%="Director " if !@person.directed_movies.empty?%><%="Writer " if !@person.written_movies.empty?%><%="Actor" if !@person.characters_played.empty?%></h2>
 <h2>Date of Birth: <%=@person.dob%></h2>
+
+
+<% if !@person.directed_movies.empty?%>
+<h3><%=link_to "Directed Movies", directed_movies_path(@person.slug) %></h3>
+<%= render partial:'movie_list', locals: {movies: @person.directed_movies} %>
+
+
+<%end%>
+
+<% if !@person.written_movies.empty?%>
+<h3><%=link_to "Written Movies", written_movies_path(@person.slug) %></h3>
+<%= render partial:'movie_list', locals: {movies: @person.written_movies} %>
+<%end%>
+
+<% if !@person.characters_played.empty?%>
+<h3>Filmography</h3>
+<ul>
+  <% @person.characters_played.each do |character|%>
+  <li><%=link_to character.movie.title, movie_path(character.movie.slug)%> - <%=character.movie.release_date%><br>
+  <%=character.name%></li>
+  <%end%>
+</ul>
+<%end%>
