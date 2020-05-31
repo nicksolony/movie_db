@@ -4,7 +4,7 @@ class Person < ApplicationRecord
   has_many :directed_movies, :foreign_key => 'director_id', :class_name=>'Movie'
   has_many :written_movies, :foreign_key => 'writer_id', :class_name=>'Movie'
   validates :name, presence: true
-  validates :slug, uniqueness: true
+  validates :name, uniqueness: { scope: :dob}
   after_validation :set_slug, only: [:create, :update]
 
   private

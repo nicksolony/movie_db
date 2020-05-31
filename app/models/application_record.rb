@@ -2,7 +2,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   def self.recently_added
-        last(3).reverse
+        last(3).reverse.uniq
   end
 
 end
