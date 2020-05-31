@@ -1,8 +1,9 @@
 class PeopleController < ApplicationController
   def index
-    binding.pry
     @people=Person.order(:name)
-    @directors=Person.where(directed_movies: true)
+    @directors=@people.select{|person| !person.directed_movies.empty?}
+    @writers=@people.select{|person| !person.written_movies.empty?}
+    @actors
   end
 
   def new
