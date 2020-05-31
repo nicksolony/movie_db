@@ -48,7 +48,7 @@ class Movie < ApplicationRecord
    def characters_attributes=(characters_attributes)
     characters_attributes.values.each do |character_attributes|
       if character_attributes["actor_id"].present?
-        self.characters.build(actor_id: character_attributes[:actor_id],name: character_attributes[:name])
+        self.characters.build(actor_id: character_attributes[:actor_id],name: character_attributes[:name]) unless self.actors.include?(Person.find(character_attributes["actor_id"]))
       else
         if character_attributes[:actor][:name].present?
           if self.director && self.director.name==character_attributes[:actor][:name] && self.director.dob.to_s==character_attributes[:actor][:dob]
