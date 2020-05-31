@@ -40,9 +40,13 @@ class MoviesController < ApplicationController
 
   def destroy
     if @movie=Movie.find_by(:slug=> params[:id])
-      @characters=@movie.characters.order(:name)
-      @characters.each do |character|
+      @movie.characters.each do |character|
         character.destroy
+      end
+      MovieGenre.all.each do |movie_genre|
+        if movie_genre.movie == @movie
+          movie_genre.destroy
+        end
       end
       @movie.destroy
       redirect_to movies_path
