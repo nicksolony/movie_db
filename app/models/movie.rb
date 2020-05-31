@@ -25,7 +25,7 @@ class Movie < ApplicationRecord
 
  def director_attributes=(director_attribute)
    if director_attribute[:name].present?
-     if person_find_or_create_by(director_attribute)
+     if person_find_by(director_attribute)
        self.director=person
      else
       self.build_director(director_attribute)
@@ -35,7 +35,7 @@ class Movie < ApplicationRecord
 
   def writer_attributes=(writer_attribute)
       if writer_attribute[:name].present?
-        if person_find_or_create_by(writer_attribute)
+        if person_find_by(writer_attribute)
           self.writer=person
         else
          self.build_writer(writer_attribute)
@@ -43,6 +43,18 @@ class Movie < ApplicationRecord
       end
    end
 
+   def characters_attributes=(characters_attributes)
+    characters_attributes.values.each do |character_attributes|
+      if character_attributes["actor_id"].present?
+        self.characters.build(actor_id: character_attributes[:actor_id],name: character_attributes[:name])
+      else
+        if character_attributes[:actor][:name].present?
+          person=Person.find_or_create_by(character_attributes[:actor])
+          self.characters.build(actor_id: person.id,name: character_attributes[:name])
+        end
+      end
+    end
+  end
 
   private
 
@@ -54,7 +66,7 @@ class Movie < ApplicationRecord
       end
     end
 
-    def person_find_or_create_by(attributes)
+    def person_find_by(attributes)
         if person = Person.find_by(attributes)
           else person = Person.where(dob: nil).find_by(name: attributes[:name])
         end

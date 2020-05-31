@@ -10,11 +10,11 @@ class MoviesController < ApplicationController
     @movie=Movie.new
     @genres||=Genre.order(:name)
     @people||=Person.order(:name)
+    5.times {@movie.characters.build}
     #@movie.build_director
   end
 
   def create
-    binding.pry
     @movie=Movie.new(movie_params)
     if @movie.save
       redirect_to movie_path(@movie.slug)
@@ -44,7 +44,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :director_id,:writer_id,:release_date, genre_ids:[], genres_attributes: [:name], director_attributes: [:name, :dob],writer_attributes: [:name, :dob],character_attributes: [:movie_id, :actor_id,:name])
+    params.require(:movie).permit(:title, :director_id,:writer_id,:release_date, genre_ids:[], genres_attributes: [:name], director_attributes: [:name, :dob],writer_attributes: [:name, :dob],characters_attributes: [:movie_id, :actor_id,:name, actor:[:name,:dob]])
   end
 
 end

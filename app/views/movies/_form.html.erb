@@ -38,18 +38,24 @@
 <tr>
   <td><h3>Cast</h3></td>
 </tr>
+<%= f.fields_for :characters do |character_fields| %>
+
 <tr>
-  <td><h4>Actor:</h4></td>
-  <%= f.fields_for :characters, movie.characters.build do |character_fields| %>
-  <td><%=  f.collection_select :actor_ids, @people,:id,:name, include_blank: true %></td>
+
+  <td> <strong>Actor:</strong></td>
+  <td><%=  character_fields.collection_select :actor_id, @people,:id,:name, include_blank: true %></td>
+  <td><strong> Character Name:</strong></td>
+  <td><%=character_fields.text_field :name%></td>
   <td>Or create a new actor:</td>
-  <%= f.fields_for :actors, movie.actors.build do |actor_attribute| %>
+  <%= character_fields.fields_for :actor, movie.actors.build do |actor_attribute| %>
     <td><%= actor_attribute.text_field :name %></td>
     <td><%= actor_attribute.label :dob, "DOB:" %></td>
     <td><%= actor_attribute.date_field :dob %></td>
+  </tr>
+
   <% end %>
   <% end %>
-</tr>
+
 <tr>
 
 </tr>
