@@ -6,7 +6,7 @@
 <h2>Release Date: <%=@movie.release_date%></h2>
 <h3>Director: <%=link_to @director.name, person_path(@director.slug) if !@director.nil?%></h3>
 <h3>Writer: <%=link_to @writer.name, person_path(@writer.slug) if !@writer.nil?%></h3>
-<h3>Cast:</h3>
+<h3><%=link_to "Cast", movie_characters_path(@movie.slug)%></h3>
 <%= link_to "<button>Add new cast member</button>".html_safe, new_movie_character_path(@movie.slug), :id => "button_id", :class => "button_class" if user_signed_in?%>
 <table>
   <thead>

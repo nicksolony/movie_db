@@ -10,7 +10,7 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
 
 
   resources :movies do
-    resources :characters, only: [:new,:create,:destroy]
+    resources :characters, only: [:new,:create,:destroy,:index]
   end
   resources :people
   resources :reviews

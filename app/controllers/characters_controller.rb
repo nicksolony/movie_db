@@ -2,7 +2,11 @@ class CharactersController < ApplicationController
   #before_action :authenticate_user!, only: [:new, :edit, :create, :destroy]
 
   def index
-
+    if @movie=Movie.find_by(slug: params[:movie_id])
+      @characters=@movie.characters
+    else
+      redirect_to movies_path
+    end
   end
 
   def new
@@ -20,13 +24,6 @@ class CharactersController < ApplicationController
       end
   end
 
-  def show
-
-  end
-
-  def edit
-
-  end
 
   def destroy
     @character=Character.find(params[:id])

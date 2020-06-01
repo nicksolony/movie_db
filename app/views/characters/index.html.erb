@@ -1,0 +1,15 @@
+<h1><%=@movie.title%> - Actors and Characters</h1>
+<table>
+  <thead>
+    <th>Actor</th>
+    <th>Character</th>
+  </thead>
+  <% @characters.each do |character| %>
+  <tr>
+    <td><%=link_to character.actor.name, person_path(character.actor.slug)%></td>
+    <td><%=character.name%></td>
+  </tr>
+  <%end%>
+</table>
+
+<p><%= link_to "<button>Go back</button>".html_safe, :back, :id => "button_id", :class => "button_class"%>
