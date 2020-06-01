@@ -8,15 +8,15 @@ class Person < ApplicationRecord
   after_validation :set_slug, only: [:create, :update]
 
   def directed_movies
-    Movie.where(director: self)
+    Movie.where(director: self).order(release_date: :desc)
   end
 
   def written_movies
-    Movie.where(writer: self)
+    Movie.where(writer: self).order(release_date: :desc)
   end
 
   def characters_played
-    Character.where(actor:self)
+    Character.where(actor:self).sort { |x,y| y.movie.release_date<=> x.movie.release_date }
   end
 
   private

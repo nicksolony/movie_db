@@ -17,6 +17,7 @@
   <tr>
     <td><%=link_to character.actor.name, person_path(character.actor.slug)%></td>
     <td><%=character.name%></td>
+    <td><%=link_to "X",character_path(character), :method=> :delete%></td>
   </tr>
   <%end%>
 </table>
