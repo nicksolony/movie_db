@@ -20,11 +20,11 @@
     <li><%= link_to 'Home', root_path%></li>
     <li><%= link_to 'Movies', movies_path%></li>
     <li><%= link_to 'People', people_path%></li>
-    <li><%= link_to 'Reviews', reviews_path%></li>
+    <!-- <li><%= link_to 'Reviews', reviews_path%></li> -->
     <% if user_signed_in? %>
       <li style="float:right"><%= link_to 'Logout', destroy_user_session_path, method: :delete%></li>
       <li style="float:right"><%= link_to 'Edit Profile', edit_user_registration_path%></li>
-      <li style="float:right"><%= link_to 'My Profile', user_path(current_user)%></li>
+      <!-- <li style="float:right"><%= link_to 'My Profile', user_path(current_user)%></li> -->
 
     <%else%>
       <li style="float:right"><%= link_to 'Sign up', signup_path%></li>

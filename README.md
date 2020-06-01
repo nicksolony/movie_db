@@ -1,57 +1,19 @@
-# README
+# Movie_DB
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Movie_DB is a database with films and actors compiled together and it gives ability to users to add or edit movies and people to the database.
+There are reviews also in the project that will be build later.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+Just run bundle install
 
-* System dependencies
+## Usage
 
-* Configuration
+User doesn't need to create an account to view Movies or people pages.
 
-* Database creation
+In order to make any changes or add new movies or people, user must sign in via login or facebook. If user doesn't have facebook account, user should signup.
 
-* Database initialization
+Upon sign in user, can add/edit/delete movies and people.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Models:
-
-User
-  username:string
-  password:digest
-  email:string
-
-Genre
-  name:string
-
-Review
-  user:belongs_to
-  movie:belongs_to
-  comment:text
-  rating:integer
-
-Person
-  name:string
-  dob:date
-
-Movie
-  title:string
-  genre:belongs_to
-  director:belongs_to
-  writer:belongs_to
-  release_date:date
-
-Character
-  movie:belongs_to
-  person:belongs_to
-  name:string
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
