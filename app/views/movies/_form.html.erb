@@ -9,7 +9,7 @@
   </tr>
 <tr>
   <td><h3>Genres:</h3></td>
-  <td><%= f.select :genre_ids, options_from_collection_for_select(@genres, :id, :name), {}, {:multiple => true} %></td>
+  <td><%= f.select :genre_ids, options_from_collection_for_select(@genres, :id, :name, f.object.genre_ids), {}, {:multiple => true} %></td> 
   <td>Or create a new genre:</td>
   <%= f.fields_for :genres, movie.genres.build do |genres_fields| %>
     <td><%= genres_fields.text_field :name %></td>
