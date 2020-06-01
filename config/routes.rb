@@ -8,8 +8,10 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
     delete '/logout' => 'devise/sessions#destroy'
   end
 
-  resources :characters
-  resources :movies
+
+  resources :movies do
+    resources :characters
+  end
   resources :people
   resources :reviews
   resources :genres

@@ -1,0 +1,18 @@
+<%= form_for character do |f| %>
+<table>
+  <tr>
+    <td> <strong>Actor:</strong></td>
+    <td><%=  f.collection_select :actor_id, @people,:id,:name, include_blank: true %></td>
+    <td><strong> Character Name:</strong></td>
+    <td><%=f.text_field :name%></td>
+    <td>Or create a new actor:</td>
+    <%= f.fields_for :actor, @movie.actors.build do |actor_attribute| %>
+      <td><%= actor_attribute.text_field :name %></td>
+      <td><%= actor_attribute.label :dob, "DOB:" %></td>
+      <td><%= actor_attribute.date_field :dob %></td>
+    </tr>
+    <% end %>
+<td><%= f.submit %></td>
+<% end %>
+</tr>
+</table>

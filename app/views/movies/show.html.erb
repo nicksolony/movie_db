@@ -7,7 +7,7 @@
 <h3>Director: <%=link_to @director.name, person_path(@director.slug) if !@director.nil?%></h3>
 <h3>Writer: <%=link_to @writer.name, person_path(@writer.slug) if !@writer.nil?%></h3>
 <h3>Cast:</h3>
-
+<%=link_to "Add new cast member",new_movie_character_path(@movie.slug)%>
 <table>
   <thead>
     <th>Actor</th>
@@ -17,7 +17,7 @@
   <tr>
     <td><%=link_to character.actor.name, person_path(character.actor.slug)%></td>
     <td><%=character.name%></td>
-    <td><%=link_to "X",character_path(character), :method=> :delete%></td>
+    <td><%=link_to "X",movie_character_path(@movie.slug,character), :method=> :delete%></td>
   </tr>
   <%end%>
 </table>

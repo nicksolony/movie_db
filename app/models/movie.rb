@@ -25,7 +25,7 @@ class Movie < ApplicationRecord
 
  def director_attributes=(director_attribute)
    if director_attribute[:name].present?
-     if person_find_by(director_attribute)
+     if person=person_find_by(director_attribute)
        self.director=person
      else
       self.build_director(director_attribute)
@@ -35,7 +35,7 @@ class Movie < ApplicationRecord
 
   def writer_attributes=(writer_attribute)
       if writer_attribute[:name].present?
-        if person_find_by(writer_attribute)
+        if person=person_find_by(writer_attribute)
           self.writer=person
         elsif self.director && self.director.name==writer_attribute[:name] && self.director.dob.to_s==writer_attribute[:dob]
             self.writer=self.director
@@ -76,11 +76,7 @@ class Movie < ApplicationRecord
       end
     end
 
-    def person_find_by(attributes)
-        if person = Person.find_by(attributes)
-          else person = Person.where(dob: nil).find_by(name: attributes[:name])
-        end
-    end
+
 
   #  def director_attributes=(director_attribute)  ### - OLD CODE GOOD FOR DIRECTOR AND WRITER
   #    if director_attribute[:name].present?

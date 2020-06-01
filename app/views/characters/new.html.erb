@@ -1,0 +1,25 @@
+<h1>New cast member for <%=link_to @movie.title, movie_path(@movie.slug)%></h1>
+
+<%= form_for @character, :url=>movie_characters_path(params[:movie_id]) do |f| %>
+<%= f.hidden_field :movie_id, :value => @movie.id %>
+<table>
+  <tr>
+    <td> <strong>Actor:</strong></td>
+    <td><%=  f.collection_select :actor_id, @people,:id,:name, include_blank: true %></td>
+    <td>Or create a new actor:</td>
+    <%= f.fields_for :actor, @character.build_actor do |actor_attribute| %>
+      <td><%= actor_attribute.text_field :name %></td>
+      <td><%= actor_attribute.label :dob, "DOB:" %></td>
+      <td><%= actor_attribute.date_field :dob %></td>
+    </tr>
+    <tr>
+      <td><strong> Character Name:</strong></td>
+      <td><%=f.text_field :name%></td>
+    </tr>
+    <tr>
+
+    <% end %>
+<td><%= f.submit %></td>
+<% end %>
+</tr>
+</table>
