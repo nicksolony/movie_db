@@ -1,4 +1,4 @@
-<%= link_to "Add new movie", new_movie_path if user_signed_in?%>
+<%= link_to "<button>Add new movie</button>".html_safe, new_movie_path, :id => "button_id", :class => "button_class" if user_signed_in?%>
 <h1>All Movies</h1>
 <h3>See movies by Genre</h3>
 <h4><% @genres.each do |genre|%>

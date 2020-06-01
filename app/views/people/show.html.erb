@@ -19,3 +19,5 @@
 <h3><%=link_to "Filmography", filmography_path(@person.slug) %></h3>
 <%= render partial:'filmography', locals: {characters: @characters} %>
 <%end%>
+<p><%= link_to "<button>Go back</button>".html_safe, :back, :id => "button_id", :class => "button_class"%><%=link_to "<button>Edit</button>".html_safe, edit_person_path(@person.slug),:id => "button_id", :class => "button_class" if user_signed_in? %><%=link_to '<button>Delete</button>'.html_safe, person_path(@person.slug),
+            data: {:confirm => 'Are you sure?'}, :method => :delete,:id => "button_id", :class => "button_class" if user_signed_in? %></p>

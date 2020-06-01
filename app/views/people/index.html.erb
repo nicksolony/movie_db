@@ -1,5 +1,5 @@
 <h1>All people in the database are listed below</h1>
-<h3><%= link_to "Add new person", new_person_path  if user_signed_in?%></h3>
+<%= link_to "<button>Add new person</button>".html_safe, new_person_path, :id => "button_id", :class => "button_class" if user_signed_in?%>
 <table>
   <thead>
     <th><h3>Actors</h3></th>

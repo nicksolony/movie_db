@@ -10,11 +10,11 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
 
 
   resources :movies do
-    resources :characters
+    resources :characters, only: [:new,:create,:destroy]
   end
   resources :people
   resources :reviews
-  resources :genres
+  resources :genres, only: [:index, :new, :create, :show]
   resources :users,  only: [:show]
    #[:index,:directed_movies,:written_movies,:filmography]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

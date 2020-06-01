@@ -1,4 +1,4 @@
 <h1>Movies written by <%=@person.name%></h1>
 <%= render partial:'movie_list', locals: {movies: @movies} %>
 
-<h3><%=link_to "Back to #{@person.name} page", person_path(@person.slug)%></h3>
+<%= link_to "<button>Go back</button>".html_safe, :back, :id => "button_id", :class => "button_class"%>

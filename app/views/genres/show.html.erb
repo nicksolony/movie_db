@@ -5,3 +5,4 @@
   <li><%= link_to m.title, movie_path(m.slug)%></li>
   <%end%>
 </ul>
+<%= link_to "<button>Go back</button>".html_safe, genres_path, :id => "button_id", :class => "button_class"%>

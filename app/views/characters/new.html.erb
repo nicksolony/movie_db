@@ -22,4 +22,7 @@
 <td><%= f.submit %></td>
 <% end %>
 </tr>
+<tr>
+    <td><%= link_to "<button>Go Back</button>".html_safe, movie_path(@movie.slug), :id => "button_id", :class => "button_class" if user_signed_in?%></td>
+</tr>
 </table>

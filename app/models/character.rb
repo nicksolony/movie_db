@@ -5,7 +5,6 @@ class Character < ApplicationRecord
   accepts_nested_attributes_for :actor
 
   def actor_attributes=(actor_attribute)
-    binding.pry
     if actor_attribute[:name].present?
       if person=person_find_by(actor_attribute)
         self.actor=person

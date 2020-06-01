@@ -12,7 +12,6 @@ class CharactersController < ApplicationController
   end
 
   def create
-    #  binding.pry
       @character=Character.new(characters_params)
       if @character.save
         redirect_to movie_path(params[:movie_id])

@@ -7,7 +7,7 @@
 <h3>Director: <%=link_to @director.name, person_path(@director.slug) if !@director.nil?%></h3>
 <h3>Writer: <%=link_to @writer.name, person_path(@writer.slug) if !@writer.nil?%></h3>
 <h3>Cast:</h3>
-<%=link_to "Add new cast member",new_movie_character_path(@movie.slug)%>
+<%= link_to "<button>Add new cast member</button>".html_safe, new_movie_character_path(@movie.slug), :id => "button_id", :class => "button_class" if user_signed_in?%>
 <table>
   <thead>
     <th>Actor</th>
@@ -17,10 +17,10 @@
   <tr>
     <td><%=link_to character.actor.name, person_path(character.actor.slug)%></td>
     <td><%=character.name%></td>
-    <td><%=link_to "X",movie_character_path(@movie.slug,character), :method=> :delete%></td>
+    <td><%= link_to "<button>x</button>".html_safe, movie_character_path(@movie.slug,character), :method=> :delete,:id => "button_id", :class => "button_class" if user_signed_in?%>
   </tr>
   <%end%>
 </table>
 
-<p><%=link_to "Edit", edit_movie_path(@movie.slug)%> | <%=link_to 'Delete', movie_path(@movie.slug),
-            data: {:confirm => 'Are you sure?'}, :method => :delete %></p>
+<p><%= link_to "<button>Go back</button>".html_safe, :back, :id => "button_id", :class => "button_class"%><%=link_to "<button>Edit</button>".html_safe, edit_movie_path(@movie.slug),:id => "button_id", :class => "button_class" if user_signed_in? %><%=link_to '<button>Delete</button>'.html_safe, movie_path(@movie.slug),
+            data: {:confirm => 'Are you sure?'}, :method => :delete,:id => "button_id", :class => "button_class" if user_signed_in? %></p>

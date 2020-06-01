@@ -26,7 +26,16 @@ class PeopleController < ApplicationController
   end
 
   def edit
+    if person_identify
+    else
+      redirect_to people_path
+    end
+  end
 
+  def update
+    @person=Person.find(params[:id])
+    @person.update(person_params)
+    redirect_to person_path(@person.slug)
   end
 
   def destroy
@@ -35,10 +44,10 @@ class PeopleController < ApplicationController
       @characters.each do |character|
         character.destroy
       end
-      @movie.destroy
-      redirect_to movies_path
+      @person.destroy
+      redirect_to people_path
     else
-      redirect_to movies_path
+      redirect_to people_path
     end
   end
 

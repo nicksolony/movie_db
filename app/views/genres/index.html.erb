@@ -1,5 +1,5 @@
 <h1>Genres</h1>
-<%= link_to "Add new genre", new_genre_path if user_signed_in?%>
+<%= link_to "<button>Add new genre</button>".html_safe, new_genre_path, :id => "button_id", :class => "button_class" if user_signed_in?%>
 <ul>
   <% @genres.each do |g|%>
   <li><%=link_to g.name, genre_path(g.slug)%> - <%=g.movies.count%></li>

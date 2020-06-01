@@ -1,4 +1,4 @@
-<h1>Add new person</h1>
+<h1>Edit <%=@person.name%></h1>
 
 <%= render partial:'form', locals: {person: @person} %>
 <%= link_to "<button>Go back</button>".html_safe, :back, :id => "button_id", :class => "button_class"%>

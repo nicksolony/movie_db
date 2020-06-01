@@ -2,4 +2,4 @@
 <%= render partial:'filmography', locals: {characters: @characters} %>
 
 
-<h3><%=link_to "Back to #{@person.name} page", person_path(@person.slug)%></h3>
+<%= link_to "<button>Go back</button>".html_safe, :back, :id => "button_id", :class => "button_class"%> 
