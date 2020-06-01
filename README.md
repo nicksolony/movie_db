@@ -5,7 +5,10 @@ There are reviews also in the project that will be build later.
 
 ## Installation
 
-Just run bundle install
+Run bundle install
+rails db:migrate
+*rails db:seed will be available later
+
 
 ## Usage
 
