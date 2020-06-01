@@ -7,7 +7,7 @@ There are reviews also in the project that will be build later.
 
 Run bundle install
 rails db:migrate
-*rails db:seed will be available later
+rails db:seed will be available later
 
 
 ## Usage
