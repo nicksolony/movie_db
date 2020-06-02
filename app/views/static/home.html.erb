@@ -9,7 +9,7 @@
   <tr>
     <th>Movies</th>
     <th>People</th>
-    <th>Reviews</th>
+    <!-- <th>Reviews</th> -->
   </tr>
   <tr>
     <td>
@@ -26,13 +26,13 @@
           <%end%>
       </ul>
     </td>
-    <td>
+    <!-- <td>
       <ul>
         <% @recently_added_reviews.each do |r|%>
           <li><%=link_to "#{r.movie.title}-'#{r.comment}'", review_path(r)%></li>
           <%end%>
       </ul>
-    </td>
+    </td> -->
   </tr>
 
 </table>
