@@ -9,7 +9,7 @@ Run bundle install
 
 rails db:migrate
 
-rails db:seed will be available later
+rails db:seed
 
 
 ## Usage
