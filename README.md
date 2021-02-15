@@ -5,11 +5,14 @@ There are reviews also in the project that will be build later.
 
 ## Installation
 
-Run bundle install
+Run following commands in your terminal
 
-rails db:migrate
+1. bundle install
+2. rails db:migrate
+3. rails db:seed
+4. rails s
 
-rails db:seed
+Open browser and visit - http://localhost:3000/
 
 
 ## Usage
