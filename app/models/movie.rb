@@ -50,15 +50,15 @@ class Movie < ApplicationRecord
       if character_attributes["actor_id"].present?
         self.characters.build(actor_id: character_attributes[:actor_id],name: character_attributes[:name]) unless self.actors.include?(Person.find(character_attributes["actor_id"]))
       else
-        if character_attributes[:actor][:name].present?
-          if self.director && self.director.name==character_attributes[:actor][:name] && self.director.dob.to_s==character_attributes[:actor][:dob]
+        if character_attributes[:actor_attributes][:name].present?
+          if self.director && self.director.name==character_attributes[:actor_attributes][:name] && self.director.dob.to_s==character_attributes[:actor_attributes][:dob]
             self.actors << self.director
             self.characters.last.name=character_attributes[:name]
-          elsif self.writer && self.writer.name==character_attributes[:actor][:name] && self.writer.dob.to_s==character_attributes[:actor][:dob]
+          elsif self.writer && self.writer.name==character_attributes[:actor_attributes][:name] && self.writer.dob.to_s==character_attributes[:actor_attributes][:dob]
             self.actors << self.writer
             self.characters.last.name=character_attributes[:name]
           else
-            person=Person.find_or_create_by(character_attributes[:actor])
+            person=Person.find_or_create_by(character_attributes[:actor_attributes])
             self.characters.build(actor_id: person.id,name: character_attributes[:name])
           end
         end
